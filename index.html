@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Travana Tacos • Rochester, NY</title>
     <meta name="description" content="Travana Tacos — Rochester, NY quesabirria pop-up built around one taco done right." />
-    <meta name="theme-color" content="#190f0d" />
+    <meta name="theme-color" content="#080407" />
     <meta name="format-detection" content="telephone=no" />
-    <meta property="og:title" content="Travana Tacos" />
-    <meta property="og:description" content="One taco. Done right. Built for speed. Priced for everyone." />
+    <meta property="og:title" content="Travana Tacos • Rochester, NY" />
+    <meta property="og:description" content="Travana Tacos — Rochester, NY quesabirria pop-up built around one taco done right." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.travanatacos.com/" />
     <meta property="og:image" content="https://www.travanatacos.com/images/BrandedTacos.png" />
+    <meta property="og:site_name" content="Travana Tacos" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://www.travanatacos.com/" />
     <link rel="icon" href="/images/TravanaLogo.png" type="image/png" />
@@ -19,46 +20,77 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="/images/taco-closeup.webp" type="image/webp" />
     <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Travana Tacos",
+  "url": "https://www.travanatacos.com/",
+  "image": "https://www.travanatacos.com/images/BrandedTacos.png",
+  "description": "Travana Tacos is a Rochester, NY quesabirria pop-up built around one signature taco box served fast and done right.",
+  "servesCuisine": ["Mexican", "Quesabirria tacos"],
+  "priceRange": "$",
+  "paymentAccepted": "Credit Card",
+  "areaServed": "Rochester, NY",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Rochester",
+    "addressRegion": "NY",
+    "addressCountry": "US"
+  },
+  "sameAs": ["https://instagram.com/TravanaTacos"],
+  "email": "travis.woods@travanatacos.com",
+  "hasMenu": "https://www.travanatacos.com/menu.html",
+  "location": {
+    "@type": "Place",
+    "name": "Highland Park",
+    "address": "1440 South Ave, Rochester, NY 14620"
+  },
+  "additionalProperty": [
+    {"@type": "PropertyValue", "name": "Current status", "value": "Not currently in operation"},
+    {"@type": "PropertyValue", "name": "First event", "value": "Rochester Lilac Festival, May 8–17, 2026, serving every Friday, Saturday and Sunday all day"},
+    {"@type": "PropertyValue", "name": "Signature menu item", "value": "Quesabirria Tacos (Box of 3) with consomé"}
+  ]
+}</script>
   </head>
   <body class="page-home">
     <a class="skip" href="#main">Skip to content</a>
     <header class="topbar">
       <div class="wrap topbar-inner">
-        <a class="brand" href="/">
+        <a class="brand" href="/" aria-label="Travana Tacos home">
           <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" role="img" focusable="false"><path d="M12 38c6-15 18-23 36-23 2 0 4 0 6 .2-2 18-10 31-24 39-8-4-14-9-18-16Z" fill="currentColor" opacity=".22"/><path d="M10 36c5-14 17-22 36-22 3 0 5 .1 8 .4-2.7 18.6-11.6 31.7-27 39.6C18 49.7 12.4 43.8 10 36Z" fill="currentColor"/><path d="M20 36c2.6 0 3.6 1.6 3.6 3.3S22.6 43 20 43s-3.7-1.7-3.7-3.7S17.4 36 20 36Zm10-4c2.6 0 3.6 1.6 3.6 3.3S32.6 39 30 39s-3.7-1.7-3.7-3.7S27.4 32 30 32Zm11 3c2.5 0 3.5 1.5 3.5 3.1S43.5 41 41 41s-3.6-1.5-3.6-2.9S38.5 35 41 35Z" fill="#FFD88E"/></svg></span>
           <span class="brand-text">
-            <span class="brand-name" id="brandName">Travana Tacos</span>
-            <span class="brand-sub" id="brandSub">Rochester, NY</span>
+            <span class="brand-name" data-site-text="brand.name">Travana Tacos</span>
+            <span class="brand-sub" data-site-text="brand.city">Rochester, NY</span>
           </span>
         </a>
         <div class="nav-wrap">
           <div class="nav-highlights" aria-label="Store highlights">
-            <span class="nav-label">Store</span>
-            <a class="nav-pill nav-pill-hot" href="/menu.html#best-sellers">Best Seller</a>
+            <span class="nav-label">Drop</span>
+            <a class="nav-pill nav-pill-hot" href="/menu.html#best-sellers">Signature box</a>
           </div>
           <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="primaryNav" aria-expanded="false"><span></span></button>
           <nav class="nav nav-catalog" id="primaryNav" aria-label="Primary navigation">
-            <a href="/" aria-current="page">Home</a>
-            <a href="/menu.html" class="nav-shop">Shop</a>
-            <a href="/menu.html#collections">Collections</a>
-            <a href="/faq.html">FAQ</a>
-            <a href="/about.html">About</a>
-            <a href="/contact.html" class="nav-cta">Contact</a>
+            <a href="/" data-nav-link aria-current="page">Home</a>
+<a href="/menu.html" data-nav-link >Menu</a>
+<a href="/find-us.html" data-nav-link >Find Us</a>
+<a href="/faq.html" data-nav-link >FAQ</a>
+<a href="/about.html" data-nav-link >About</a>
+<a href="/contact.html" class="nav-cta" data-nav-link >Contact</a>
           </nav>
         </div>
       </div>
     </header>
 
     <main id="main" class="site-main">
-      <section id="banner" class="notice reveal" style="display:none;">
+      <section id="banner" class="notice reveal" hidden>
         <strong id="banner1">Travana Tacos is not currently in operation.</strong>
         <span id="banner2">First event: Rochester Lilac Festival (May 8–17, 2026). Serving Fri–Sun all day.</span>
       </section>
-
       <section class="hero-cinematic reveal">
-        <video class="hero-video" autoplay muted loop playsinline poster="/images/taco-dark-poster.jpg">
+        <video class="hero-video" autoplay muted loop playsinline poster="/images/taco-dark-poster.webp" aria-hidden="true">
           <source src="/images/hero-loop.mp4" type="video/mp4" />
         </video>
         <div class="hero-inner">
@@ -66,12 +98,12 @@
             <div class="kicker"><span class="k-dot"></span><span id="pillCity">Rochester, NY pop-up</span></div>
             <h1 class="stack-gap">One taco. Done right.</h1>
             <p class="lead" id="tagline">One taco. Done right. Built for speed. Priced for everyone.</p>
-            <p class="muted" id="mantra" style="margin-top:10px;font-style:italic;">Mastery is knowing what to leave out.</p>
+            <p class="muted title-gap-sm" id="mantra"><em>Mastery is knowing what to leave out.</em></p>
 
             <p class="meta">
               <strong id="statusLabel">Status:</strong>
               <span id="todaySpot">Not currently in operation</span>
-              <span class="faint"> • </span>
+              <span class="faint">•</span>
               <span id="todayHours">Next service: Lilac Festival (Fri–Sun)</span>
             </p>
 
@@ -81,16 +113,15 @@
               <a class="btn ghost" href="/menu.html">Full Menu</a>
             </div>
 
-            <div class="pills">
-              <span class="pill">🇲🇽 Real flavor</span>
-              <span class="pill">🧀 Crispy + cheesy</span>
-              <span class="pill">🥣 Dip included</span>
-              <span class="pill" id="pillCashless">💳 Card only (no cash)</span>
+            <div class="pills" aria-label="Travana highlights">
+              <span class="pill">Real flavor</span>
+              <span class="pill">Crispy + cheesy</span>
+              <span class="pill">Dip included</span>
+              <span class="pill" id="pillCashless">Card only (no cash)</span>
             </div>
 
             <div class="micro-trust">Start with the box that already looks like the answer.</div>
             <div class="card-only-badge">Card Only</div>
-
             <p class="hero-note">Travana keeps the homepage simple for the same reason the menu stays focused: fewer distractions, clearer choices, and one signature quesabirria box people can spot fast and crave immediately.</p>
 
             <div class="hero-taste">
@@ -98,20 +129,14 @@
               <div><div class="taste-label">Flavor</div><div class="taste-value">Rich consomé</div></div>
               <div><div class="taste-label">Promise</div><div class="taste-value">Fast + honest</div></div>
             </div>
-
-            <div class="stats">
-              <div class="stat"><div class="k">Best seller first</div><div class="v">Lead with the signature box so the decision is immediate.</div></div>
-              <div class="stat"><div class="k">Tight menu</div><div class="v">Focused choices keep ordering fast and memorable.</div></div>
-              <div class="stat"><div class="k">Built for events</div><div class="v">Easy to browse online, easy to order in person.</div></div>
-            </div>
           </div>
 
-          <div class="hero-media">
-            <div class="photo-stack" aria-label="Travana taco photo preview">
-              <figure class="photo p1"><img class="heroimg" id="heroImg1" src="/images/taco-closeup.jpg" alt="Close-up of crispy Travana Tacos quesabirria with melty cheese and rich seared edges" loading="lazy" /></figure>
-              <figure class="photo p2"><img class="heroimg" id="heroImg2" src="/images/taco-portrait.jpg" alt="Tall portrait of Travana Tacos quesabirria box ready for dipping" loading="lazy" /></figure>
+          <div class="hero-media" aria-label="Travana taco photos">
+            <div class="photo-stack" data-parallax="0.035">
+              <figure class="photo p1"><img class="heroimg" id="heroImg1" src="/images/taco-closeup.webp" alt="Close-up of crispy Travana Tacos quesabirria with melty cheese and seared edges" fetchpriority="high" /></figure>
+              <figure class="photo p2"><img class="heroimg" id="heroImg2" src="/images/taco-portrait.webp" alt="Travana Tacos quesabirria box ready for dipping" loading="lazy" /></figure>
             </div>
-            <div class="eventbox">
+            <div class="eventbox reveal">
               <div class="event-title">Next drop</div>
               <div class="event-meta">
                 <div><strong id="eventName">Rochester Lilac Festival</strong></div>
@@ -121,7 +146,7 @@
               <p class="mini title-gap-sm">Friday, Saturday, and Sunday service all day. First public launch. First real crowd. First sellout photos.</p>
               <div class="buttons title-gap-sm">
                 <a class="btn secondary" id="eventLink" href="https://roclilacfest.com/" target="_blank" rel="noopener">Festival site</a>
-                <a class="btn secondary" id="eventMaps2" href="https://www.google.com/maps/search/?api=1&query=Highland+Park+1440+South+Ave+Rochester+NY+14620" target="_blank" rel="noopener">Open location</a>
+                <a class="btn secondary" id="eventMaps2" href="https://www.google.com/maps/search/?api=1&amp;query=Highland+Park+1440+South+Ave+Rochester+NY+14620" target="_blank" rel="noopener">Open location</a>
               </div>
             </div>
           </div>
@@ -134,206 +159,77 @@
           <div>
             <div class="kicker"><span class="k-dot"></span>Best Sellers</div>
             <h2 class="title-gap-sm">Start with the signature box.</h2>
-            <p class="muted copy-gap copy-measure">This homepage now leads with the items people are most likely to click first: the quesabirria box, the dip, and the easy extras that make the order feel complete.</p>
+            <p class="muted copy-gap copy-measure">This homepage leads with the items people are most likely to click first: the quesabirria box, the dip, and the easy extras that make the order feel complete.</p>
           </div>
           <aside class="mini-quote">The point is instant product clarity, not a long explanation.</aside>
         </div>
 
         <div class="menu-card-grid">
-          <article class="menu-card featured">
-            <div class="menu-card-media">
-              <img src="/images/taco-closeup.jpg" alt="Quesabirria taco box with crispy cheese edges and consomé" loading="lazy" />
-            </div>
+          <article class="menu-card featured reveal">
+            <div class="menu-card-media"><img src="/images/taco-closeup.webp" alt="Quesabirria taco box with crispy cheese edges and consomé" loading="lazy" /></div>
             <div class="menu-card-body">
               <span class="card-tag">Best Seller</span>
               <h3 id="itemName">Quesabirria Tacos (Box of 3)</h3>
               <p id="featuredDesc">Three crispy, cheesy quesabirria tacos with rich consomé for dipping — the one order Travana was built to get exactly right.</p>
               <ul id="includesList" class="mini-list">
-                <li>Box of 3 quesabirria tacos</li>
-                <li>Consomé for dipping</li>
-                <li>Onion + cilantro (when available)</li>
-                <li>Lime wedges (when available)</li>
+                <li>Box of 3 quesabirria tacos</li><li>Consomé for dipping</li><li>Onion + cilantro (when available)</li><li>Lime wedges (when available)</li>
               </ul>
               <div class="menu-price">Signature launch item</div>
-              <div class="collection-links">
-                <a class="catalog-link" href="/menu.html#best-sellers">Shop this item</a>
-              </div>
+              <div class="collection-links"><a class="catalog-link" href="/menu.html#best-sellers">Shop this item</a></div>
             </div>
           </article>
-
-          <article class="menu-card">
-            <div class="menu-card-media">
-              <img src="/images/taco-detail.jpg" alt="Cup of rich consomé and melty cheese details for add-ons" loading="lazy" />
-            </div>
-            <div class="menu-card-body">
-              <span class="card-tag">Popular Add-on</span>
-              <h3>Extra Consomé</h3>
-              <p>For the people who already know the dip is half the reason they came over in the first place.</p>
-              <div class="menu-price">Availability varies by event</div>
-              <div class="collection-links">
-                <a class="catalog-link" href="/menu.html#collections">See add-ons</a>
-              </div>
-            </div>
+          <article class="menu-card reveal">
+            <div class="menu-card-media"><img src="/images/taco-detail.webp" alt="Cup of rich consomé and melty cheese details for add-ons" loading="lazy" /></div>
+            <div class="menu-card-body"><span class="card-tag">Popular Add-on</span><h3>Extra Consomé</h3><p>For the people who already know the dip is half the reason they came over in the first place.</p><div class="menu-price">Availability varies by event</div><div class="collection-links"><a class="catalog-link" href="/menu.html#collections">See add-ons</a></div></div>
           </article>
-
-          <article class="menu-card">
-            <div class="menu-card-media">
-              <img src="/images/taco-story.jpg" alt="Festival-ready taco and drink pairing laid out for a simple order" loading="lazy" />
-            </div>
-            <div class="menu-card-body">
-              <span class="card-tag">Easy Pairing</span>
-              <h3>Drinks</h3>
-              <p>Cold, simple, and built to keep the line moving without stealing attention from the tacos.</p>
-              <div class="menu-price">Festival-friendly options</div>
-              <div class="collection-links">
-                <a class="catalog-link" href="/menu.html#collections">Browse pairings</a>
-              </div>
-            </div>
+          <article class="menu-card reveal">
+            <div class="menu-card-media"><img src="/images/taco-story.webp" alt="Festival-ready taco and drink pairing laid out for a simple order" loading="lazy" /></div>
+            <div class="menu-card-body"><span class="card-tag">Easy Pairing</span><h3>Drinks</h3><p>Cold, simple, and built to keep the line moving without stealing attention from the tacos.</p><div class="menu-price">Festival-friendly options</div><div class="collection-links"><a class="catalog-link" href="/menu.html#collections">Browse pairings</a></div></div>
           </article>
         </div>
       </section>
 
       <section id="monthly-release" class="card card-dark reveal">
         <div class="section-top">
-          <div>
-            <div class="kicker"><span class="k-dot"></span>Monthly Releases</div>
-            <h2 class="title-gap-sm">The first drop lands in May.</h2>
-            <p class="muted copy-gap copy-measure">This section gives the homepage a storefront rhythm even before the full release calendar exists. It starts with the real launch and leaves room for future specials once operations settle.</p>
-          </div>
+          <div><div class="kicker"><span class="k-dot"></span>Monthly Releases</div><h2 class="title-gap-sm">The first drop lands in May.</h2><p class="muted copy-gap copy-measure">This section gives the homepage a storefront rhythm even before the full release calendar exists. It starts with the real launch and leaves room for future specials once operations settle.</p></div>
           <aside class="mini-quote">Build the habit now: check the drop board, then go straight to the menu.</aside>
         </div>
-
         <div class="release-board">
-          <article class="list-card release-card is-live">
-            <span class="release-month">May 2026</span>
-            <h3>Lilac Launch</h3>
-            <p>The real first release: Travana’s signature quesabirria box at the Rochester Lilac Festival.</p>
-            <div class="release-meta">Confirmed • first public drop</div>
-          </article>
-          <article class="list-card release-card is-planned">
-            <span class="release-month">Next Up</span>
-            <h3>Add-on Board</h3>
-            <p>Extra consomé, extra cheese, and small service upgrades once the first event flow is locked.</p>
-            <div class="release-meta">Planned placeholder</div>
-          </article>
-          <article class="list-card release-card is-planned">
-            <span class="release-month">Later</span>
-            <h3>Specials + Merch</h3>
-            <p>Future drops for limited pairings, simple merch, or rotating extras after the launch cadence feels solid.</p>
-            <div class="release-meta">Planned placeholder</div>
-          </article>
+          <article class="list-card release-card is-live"><span class="release-month">May 2026</span><h3>Lilac Launch</h3><p>The real first release: Travana’s signature quesabirria box at the Rochester Lilac Festival.</p><div class="release-meta">Confirmed • first public drop</div></article>
+          <article class="list-card release-card is-planned"><span class="release-month">Next Up</span><h3>Add-on Board</h3><p>Extra consomé, extra cheese, and small service upgrades once the first event flow is locked.</p><div class="release-meta">Planned placeholder</div></article>
+          <article class="list-card release-card is-planned"><span class="release-month">Later</span><h3>Specials + Merch</h3><p>Future drops for limited pairings, simple merch, or rotating extras after the launch cadence feels solid.</p><div class="release-meta">Planned placeholder</div></article>
         </div>
-
-        <div class="buttons section-actions">
-          <a class="btn secondary" href="/find-us.html">Find the next event</a>
-          <a class="btn secondary" id="igBtn" href="https://instagram.com/TravanaTacos" target="_blank" rel="noopener">Instagram @TravanaTacos</a>
-        </div>
+        <div class="buttons section-actions"><a class="btn secondary" href="/find-us.html">Find the next event</a><a class="btn secondary" href="https://instagram.com/TravanaTacos" data-site-href="contact.instagram" target="_blank" rel="noopener">Instagram @TravanaTacos</a></div>
       </section>
 
       <section id="home-collections" class="menu-grid-section reveal">
-        <div class="section-top">
-          <div>
-            <div class="kicker"><span class="k-dot"></span>Collections</div>
-            <h2 class="title-gap-sm">Browse by what you want fast.</h2>
-            <p class="muted copy-gap copy-measure">Instead of stacking more story sections, this area groups the menu into the three browsing paths people are most likely to want first.</p>
-          </div>
-          <aside class="mini-quote">Boxes, extras, and pairings — simple enough to scan in seconds.</aside>
-        </div>
-
+        <div class="section-top"><div><div class="kicker"><span class="k-dot"></span>Collections</div><h2 class="title-gap-sm">Browse by what you want fast.</h2><p class="muted copy-gap copy-measure">Instead of stacking more story sections, this area groups the menu into the three browsing paths people are most likely to want first.</p></div><aside class="mini-quote">Boxes, extras, and pairings — simple enough to scan in seconds.</aside></div>
         <div class="menu-card-grid">
-          <article class="menu-card featured">
-            <div class="menu-card-media">
-              <img src="/images/taco-portrait.jpg" alt="Travana signature taco box presented as a premium collection hero" loading="lazy" />
-            </div>
-            <div class="menu-card-body">
-              <span class="card-tag">Collection 01</span>
-              <h3>Signature Boxes</h3>
-              <p>The hero order for people who came here to get exactly what Travana is known for.</p>
-              <div class="collection-links">
-                <a class="catalog-link" href="/menu.html#best-sellers">Open collection</a>
-              </div>
-            </div>
-          </article>
-          <article class="menu-card">
-            <div class="menu-card-media">
-              <img src="/images/taco-detail.jpg" alt="Rich consomé and cheese details representing extras and dips" loading="lazy" />
-            </div>
-            <div class="menu-card-body">
-              <span class="card-tag">Collection 02</span>
-              <h3>Extras + Dips</h3>
-              <p>Small upgrades for people who already know they want more broth, more cheese, or both.</p>
-              <div class="collection-links">
-                <a class="catalog-link" href="/menu.html#collections">Open collection</a>
-              </div>
-            </div>
-          </article>
-          <article class="menu-card">
-            <div class="menu-card-media">
-              <img src="/images/taco-story.jpg" alt="Festival-ready drinks and taco pairings grouped as a simple browse collection" loading="lazy" />
-            </div>
-            <div class="menu-card-body">
-              <span class="card-tag">Collection 03</span>
-              <h3>Drinks + Pairings</h3>
-              <p>Low-friction add-ons built to work at festivals without slowing the order line down.</p>
-              <div class="collection-links">
-                <a class="catalog-link" href="/menu.html#collections">Open collection</a>
-              </div>
-            </div>
-          </article>
+          <article class="menu-card featured reveal"><div class="menu-card-media"><img src="/images/taco-portrait.webp" alt="Travana signature taco box presented as a premium collection hero" loading="lazy" /></div><div class="menu-card-body"><span class="card-tag">Collection 01</span><h3>Signature Boxes</h3><p>The hero order for people who came here to get exactly what Travana is known for.</p><div class="collection-links"><a class="catalog-link" href="/menu.html#best-sellers">Open collection</a></div></div></article>
+          <article class="menu-card reveal"><div class="menu-card-media"><img src="/images/taco-detail.webp" alt="Rich consomé and cheese details representing extras and dips" loading="lazy" /></div><div class="menu-card-body"><span class="card-tag">Collection 02</span><h3>Extras + Dips</h3><p>Small upgrades for people who already know they want more broth, more cheese, or both.</p><div class="collection-links"><a class="catalog-link" href="/menu.html#collections">Open collection</a></div></div></article>
+          <article class="menu-card reveal"><div class="menu-card-media"><img src="/images/taco-story.webp" alt="Festival-ready drinks and taco pairings grouped as a simple browse collection" loading="lazy" /></div><div class="menu-card-body"><span class="card-tag">Collection 03</span><h3>Drinks + Pairings</h3><p>Low-friction add-ons built to work at festivals without slowing the order line down.</p><div class="collection-links"><a class="catalog-link" href="/menu.html#collections">Open collection</a></div></div></article>
         </div>
       </section>
 
       <section class="card card-sunset reveal">
-        <div class="section-top">
-          <div>
-            <div class="kicker"><span class="k-dot"></span>Why this works</div>
-            <h2 class="title-gap-sm">One hero item beats ten filler options.</h2>
-            <p class="muted copy-gap copy-measure">Travana keeps one short value section on the homepage because the trust signal is simple: real flavor, faster service, and a menu clear enough to understand at a glance.</p>
-          </div>
-        </div>
-        <div class="contact-trust">
-          <div class="trust-card"><h3>Real flavor first</h3><p>The signature box carries the whole promise, so it has to hit.</p></div>
-          <div class="trust-card"><h3>Fast checkout</h3><p>Card-only service and fewer choices keep the booth cleaner and quicker.</p></div>
-          <div class="trust-card"><h3>Easy to remember</h3><p>People leave talking about one great item, not five confusing ones.</p></div>
-        </div>
+        <div class="section-top"><div><div class="kicker"><span class="k-dot"></span>Why this works</div><h2 class="title-gap-sm">One hero item beats ten filler options.</h2><p class="muted copy-gap copy-measure">Travana keeps one short value section on the homepage because the trust signal is simple: real flavor, faster service, and a menu clear enough to understand at a glance.</p></div></div>
+        <div class="contact-trust"><div class="trust-card"><h3>Real flavor first</h3><p>The signature box carries the whole promise, so it has to hit.</p></div><div class="trust-card"><h3>Fast checkout</h3><p>Card-only service and fewer choices keep the booth cleaner and quicker.</p></div><div class="trust-card"><h3>Easy to remember</h3><p>People leave talking about one great item, not five confusing ones.</p></div></div>
       </section>
 
       <section id="testimonials" class="card reveal testimonials-section">
-        <div class="section-top">
-          <div>
-            <div class="kicker"><span class="k-dot"></span>Testimonials</div>
-            <h2 class="title-gap-sm">The reactions we want the first crowd to have.</h2>
-            <p class="muted copy-gap copy-measure">This block gives the homepage a trust section without turning it back into a long story. For now, the quotes are launch-direction placeholders that can be replaced with real reviews after service starts.</p>
-          </div>
-          <aside class="mini-quote">Word-of-mouth is the goal: one bite, one dip, one person pulling their friend back into line.</aside>
-        </div>
-
-        <div class="testimonial-grid">
-          <article class="list-card testimonial-card">
-            <p>“The tortilla had that crispy cheese edge, the dip sealed it, and suddenly we were talking about coming back before we even finished the box.”</p>
-            <div class="testimonial-meta">Future festival guest<span class="testimonial-role">Launch-weekend energy</span></div>
-          </article>
-          <article class="list-card testimonial-card">
-            <p>“Exactly what you want at a busy event: easy order, quick pickup, huge flavor, and no wondering what to get.”</p>
-            <div class="testimonial-meta">Weekend taco crew<span class="testimonial-role">Fast-line favorite</span></div>
-          </article>
-          <article class="list-card testimonial-card">
-            <p>“This tastes like the taco you stop your group for. The kind of booth people text their friends about five minutes later.”</p>
-            <div class="testimonial-meta">Rochester first-timer<span class="testimonial-role">Shareable first impression</span></div>
-          </article>
-        </div>
+        <div class="section-top"><div><div class="kicker"><span class="k-dot"></span>Testimonials</div><h2 class="title-gap-sm">The reactions we want the first crowd to have.</h2><p class="muted copy-gap copy-measure">This block gives the homepage a trust section without turning it back into a long story. For now, the quotes are launch-direction placeholders that can be replaced with real reviews after service starts.</p></div><aside class="mini-quote">Word-of-mouth is the goal: one bite, one dip, one person pulling their friend back into line.</aside></div>
+        <div class="testimonial-grid"><article class="list-card testimonial-card"><p>“The tortilla had that crispy cheese edge, the dip sealed it, and suddenly we were talking about coming back before we even finished the box.”</p><div class="testimonial-meta">Future festival guest<span class="testimonial-role">Launch-weekend energy</span></div></article><article class="list-card testimonial-card"><p>“Exactly what you want at a busy event: easy order, quick pickup, huge flavor, and no wondering what to get.”</p><div class="testimonial-meta">Weekend taco crew<span class="testimonial-role">Fast-line favorite</span></div></article><article class="list-card testimonial-card"><p>“This tastes like the taco you stop your group for. The kind of booth people text their friends about five minutes later.”</p><div class="testimonial-meta">Rochester first-timer<span class="testimonial-role">Shareable first impression</span></div></article></div>
       </section>
-
       <a class="floating-menu-cta" href="/menu.html">View Menu</a>
       <footer class="footer footer-rich">
         <div class="footer-inner">
           <div class="footer-center">
-            <img src="/images/TravanaLogo.png" alt="Travana Tacos" class="footer-logo" />
-            <div class="footer-title">© <span id="y"></span> <span id="brandName2">Travana Tacos</span></div>
+            <img src="/images/TravanaLogo.png" alt="Travana Tacos" class="footer-logo" loading="lazy" />
+            <div class="footer-title">© <span data-site-text="year"></span> <span data-site-text="brand.name">Travana Tacos</span></div>
             <div class="mini">Rochester pride. Mexican flavor roots. One taco done right.</div>
             <div class="footer-socials">
-              <a href="https://instagram.com/TravanaTacos" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-              <a href="mailto:travis.woods@travanatacos.com">Email</a>
+              <a href="https://instagram.com/TravanaTacos" data-site-href="contact.instagram" target="_blank" rel="noopener">Instagram</a>
+              <a href="mailto:travis.woods@travanatacos.com" data-site-href="contact.email">Email</a>
               <a href="/find-us.html">Find Us</a>
             </div>
             <div class="footer-news">For now, Instagram is the drop board. That’s where live locations, event reminders, and first-look photos will land.</div>

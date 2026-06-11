@@ -1,397 +1,376 @@
-/* app.js — site-wide enhancements + config hydration
-   - Reads window.SITE from site-config.js
-   - Hydrates common elements across pages
-   - Adds: scroll reveal, mobile nav, cursor spotlight, back-to-top, mailto form
+/* app.js — lightweight interaction layer for Travana Tacos
+   Static-site friendly. No dependencies. Respects reduced motion.
 */
-
 (() => {
-  const S = window.SITE || {};
-  const brand = S.brand || {};
-  const ops = S.operations || {};
-  const banner = S.banner || {};
-  const today = S.today || {};
-  const menu = S.menu || {};
-  const ev = S.firstEvent || {};
-  const imgs = S.images || {};
-  const contact = S.contact || {};
+  const SITE = window.SITE || {};
+  const brand = SITE.brand || {};
+  const ops = SITE.operations || {};
+  const banner = SITE.banner || {};
+  const event = SITE.firstEvent || {};
+  const today = SITE.today || {};
+  const contact = SITE.contact || {};
+  const menu = SITE.menu || {};
+  const imgs = SITE.images || {};
 
   const $ = (id) => document.getElementById(id);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const setText = (id, value) => {
-    const el = $(id);
-    if (!el) return;
-    if (value === undefined || value === null) return;
-    const v = String(value);
-    if (v.trim().length === 0) return;
-    el.textContent = v;
+  const getPath = (path) => {
+    const map = {
+      "brand.name": brand.name,
+      "brand.city": brand.city,
+      "brand.tagline": brand.tagline,
+      "brand.mantra": brand.mantra,
+      "event.name": event.name,
+      "event.dates": event.dates,
+      "event.schedule": event.servingSchedule || event.schedule,
+      "event.where": `${event.locationName || ""}${event.locationName && event.address ? " — " : ""}${event.address || ""}`.trim(),
+      "event.admission": event.admission,
+      "event.highlights": event.highlights,
+      "event.music": event.music,
+      "event.parking": event.parkingTransit || event.parking,
+      "contact.email": contact.email,
+      "contact.instagram": contact.instagramHandle ? `@${contact.instagramHandle}` : "",
+      "menu.name": menu.featuredItemName,
+      "menu.desc": menu.featuredItemDesc,
+      "menu.pricingNote": menu.pricingNote,
+      "today.status": ops.inOperation ? today.status : "Not currently in operation",
+      "today.hours": ops.inOperation ? today.hours : (event.name ? `Next service: ${event.name} (Fri–Sun)` : "Next service: coming soon"),
+      "year": String(new Date().getFullYear())
+    };
+    return map[path];
   };
 
-  const setHref = (id, href) => {
-    const el = $(id);
-    if (!el || !href) return;
-    el.setAttribute("href", href);
+  const hydrateText = () => {
+    $$('[data-site-text]').forEach((el) => {
+      const value = getPath(el.getAttribute('data-site-text'));
+      if (value !== undefined && value !== null && String(value).trim()) el.textContent = value;
+    });
+
+    // Backward-compatible IDs from the previous site files.
+    const legacy = {
+      brandName: brand.name,
+      brandName2: brand.name,
+      brandSub: brand.city,
+      tagline: brand.tagline,
+      mantra: brand.mantra,
+      eventName: event.name,
+      eventDates: event.dates,
+      eventWhere: getPath('event.where'),
+      eventSchedule: event.servingSchedule || event.schedule,
+      eventAdmission: event.admission,
+      eventHighlights: event.highlights,
+      eventMusic: event.music,
+      eventParking: event.parkingTransit || event.parking,
+      itemName: menu.featuredItemName,
+      itemDesc: menu.featuredItemDesc,
+      featuredDesc: menu.featuredItemDesc,
+      pricingNote: menu.pricingNote,
+      y: String(new Date().getFullYear())
+    };
+    Object.entries(legacy).forEach(([id, value]) => {
+      const el = $(id);
+      if (el && value !== undefined && value !== null && String(value).trim()) el.textContent = value;
+    });
   };
 
-  const setSrc = (id, src) => {
-    const el = $(id);
-    if (!el || !src) return;
-    el.setAttribute("src", src);
+  const hydrateLinks = () => {
+    const instagramHref = contact.instagramHandle ? `https://instagram.com/${contact.instagramHandle}` : "";
+    const mailHref = contact.email ? `mailto:${contact.email}` : "";
+    const mapHref = ops.inOperation ? today.maps : event.maps;
+
+    $$('[data-site-href]').forEach((el) => {
+      const key = el.getAttribute('data-site-href');
+      const value = {
+        "contact.email": mailHref,
+        "contact.instagram": instagramHref,
+        "event.link": event.link,
+        "event.maps": event.maps,
+        "today.maps": mapHref,
+        "menu": "/menu.html"
+      }[key];
+      if (value) el.setAttribute('href', value);
+    });
+
+    const legacyLinks = {
+      igBtn: instagramHref,
+      igLink: instagramHref,
+      igLink2: instagramHref,
+      emailBtn: mailHref,
+      emailLink: mailHref,
+      emailLink2: mailHref,
+      eventLink: event.link,
+      eventMaps: event.maps,
+      eventMaps2: event.maps,
+      mapsBtn: mapHref,
+      navlink: mapHref
+    };
+    Object.entries(legacyLinks).forEach(([id, href]) => {
+      const el = $(id);
+      if (el && href) el.setAttribute('href', href);
+    });
   };
 
-  // Year
-  const year = new Date().getFullYear();
-  const y = $("y");
-  if (y) y.textContent = String(year);
-  document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = String(year)));
-
-  // Brand
-  setText("brandName", brand.name);
-  setText("brandName2", brand.name);
-  if ($("brandSub")) {
-    const city = brand.city || "Rochester, NY";
-    setText("brandSub", city);
-  }
-  // Pills (optional)
-  const pillCity = $("pillCity");
-  if (pillCity) pillCity.textContent = `${brand.city || "Rochester, NY"} pop-up`;
-  const pillCashless = $("pillCashless");
-  if (pillCashless) pillCashless.textContent = ops.cardOnly ? "💳 Card only (no cash)" : "💳 Payment options vary";
-
-
-  const logo = $("brandLogo");
-  if (logo && brand.logoSrc) logo.src = brand.logoSrc;
-  if (logo && brand.logoAlt) logo.alt = brand.logoAlt;
-
-  // Optional per-page hero copy
-  setText("tagline", brand.tagline);
-  if ($("mantra")) {
-    if (brand.mantra) setText("mantra", brand.mantra);
-    else $("mantra").style.display = "none";
-  }
-
-  // Banner
-  if (banner.enabled) {
-    const b = $("banner");
-    if (b) b.style.display = "flex";
-    setText("banner1", banner.line1);
-    setText("banner2", banner.line2);
-  }
-
-  // Images
-  setSrc("heroImg1", imgs.hero1);
-  setSrc("heroImg2", imgs.hero2);
-  setSrc("aboutImg1", imgs.about1);
-  setSrc("aboutImg2", imgs.about2);
-
-  // Contact links
-  if (contact.instagramHandle) {
-    const igHref = `https://instagram.com/${contact.instagramHandle}`;
-    setHref("igBtn", igHref);
-    setText("igBtn", `Instagram @${contact.instagramHandle}`);
-
-    setHref("igLink", igHref);
-    setText("igLink", `@${contact.instagramHandle}`);
-
-    setHref("igLink2", igHref);
-    setText("igLink2", `@${contact.instagramHandle}`);
-  }
-
-  if (contact.email) {
-    const mailHref = `mailto:${contact.email}`;
-    setHref("emailBtn", mailHref);
-    setText("emailBtn", contact.email);
-
-    setHref("emailLink", mailHref);
-    setText("emailLink", contact.email);
-
-    setHref("emailLink2", mailHref);
-    setText("emailLink2", contact.email);
-  }
-
-  // Status (Home + Find Us)
-  const isLive = !!ops.inOperation;
-
-  const statusLabel = $("statusLabel");
-  const todaySpot = $("todaySpot") || $("spot");
-  const todayHours = $("todayHours") || $("hours");
-  const mapsBtn = $("mapsBtn") || $("navlink");
-
-  if (todaySpot || todayHours || statusLabel || mapsBtn) {
-    if (!isLive) {
-      if (statusLabel) statusLabel.textContent = "Status:";
-      if (todaySpot) todaySpot.textContent = "Not currently in operation";
-      if (todayHours) todayHours.textContent = ev.name ? `Next service: ${ev.name} (Fri–Sun)` : "Next service: coming soon";
-      if (mapsBtn) mapsBtn.href = ev.maps || mapsBtn.href;
-    } else {
-      if (statusLabel) statusLabel.textContent = "Today:";
-      if (todaySpot && today.status) todaySpot.textContent = today.status;
-      if (todayHours && today.hours) todayHours.textContent = today.hours;
-      if (mapsBtn && today.maps) mapsBtn.href = today.maps;
-    }
-  }
-
-  // First Event fields (Home + Find Us)
-  setText("eventName", ev.name);
-  setText("eventDates", ev.dates);
-  if (ev.locationName || ev.address) {
-    setText("eventWhere", `${ev.locationName || ""}${ev.locationName && ev.address ? " — " : ""}${ev.address || ""}`.trim());
-  }
-  setText("eventSchedule", ev.servingSchedule || ev.schedule);
-  setText("eventAdmission", ev.admission);
-  setText("eventHighlights", ev.highlights);
-  setText("eventMusic", ev.music);
-  setText("eventParking", ev.parkingTransit || ev.parking);
-
-  setHref("eventLink", ev.link);
-  setHref("eventMaps", ev.maps);
-  setHref("eventMaps2", ev.maps);
-
-  // Menu fields
-  setText("itemName", menu.featuredItemName);
-  setText("itemDesc", menu.featuredItemDesc);
-  setText("featuredDesc", menu.featuredItemDesc);
-  setText("pricingNote", menu.pricingNote);
+  const hydrateImages = () => {
+    const imageMap = {
+      heroImg1: imgs.hero1,
+      heroImg2: imgs.hero2,
+      aboutImg1: imgs.about1,
+      aboutImg2: imgs.about2,
+      brandLogo: brand.logoSrc
+    };
+    Object.entries(imageMap).forEach(([id, src]) => {
+      const el = $(id);
+      if (el && src) el.setAttribute('src', src);
+      if (id === 'brandLogo' && el && brand.logoAlt) el.setAttribute('alt', brand.logoAlt);
+    });
+  };
 
   const fillList = (id, items) => {
-    const ul = $(id);
-    if (!ul || !Array.isArray(items) || !items.length) return;
-    ul.innerHTML = "";
-    items.forEach((t) => {
-      const li = document.createElement("li");
-      li.textContent = t;
-      ul.appendChild(li);
+    const el = $(id);
+    if (!el || !Array.isArray(items)) return;
+    el.innerHTML = '';
+    items.forEach((text) => {
+      const li = document.createElement('li');
+      li.textContent = text;
+      el.appendChild(li);
     });
   };
 
-  fillList("includesList", menu.includes);
-  fillList("menuIncludes", menu.includes);
-  fillList("menuAddons", menu.addOns);
-  fillList("menuDrinks", menu.drinks);
+  const hydrateConfig = () => {
+    hydrateText();
+    hydrateLinks();
+    hydrateImages();
 
-  // Map embed (Find Us)
-  const mapEmbed = $("mapEmbed");
-  if (mapEmbed) {
-    const q = isLive ? (today.maps || "") : (ev.address || ev.locationName || brand.city || "Rochester, NY");
-    const src = `https://www.google.com/maps?q=${encodeURIComponent(q)}&output=embed`;
-    mapEmbed.setAttribute("src", src);
-  }
+    const pillCity = $('pillCity');
+    if (pillCity) pillCity.textContent = `${brand.city || 'Rochester, NY'} pop-up`;
+    const pillCashless = $('pillCashless');
+    if (pillCashless) pillCashless.textContent = ops.cardOnly ? 'Card only (no cash)' : 'Payment options vary';
 
-  // Nav active (auto)
-  try {
-    const path = (location.pathname || "/").replace(/\/index\.html$/, "/");
-    const hash = location.hash || "";
-    const links = Array.from(document.querySelectorAll(".nav a"));
+    const statusLabel = $('statusLabel');
+    if (statusLabel) statusLabel.textContent = ops.inOperation ? 'Today:' : 'Status:';
+    const todaySpot = $('todaySpot') || $('spot');
+    const todayHours = $('todayHours') || $('hours');
+    if (todaySpot) todaySpot.textContent = ops.inOperation ? (today.status || 'Open today') : 'Not currently in operation';
+    if (todayHours) todayHours.textContent = ops.inOperation ? (today.hours || 'Hours TBD') : (event.name ? `Next service: ${event.name} (Fri–Sun)` : 'Next service: coming soon');
 
-    links.forEach((a) => {
-      a.classList.remove("active");
-      if (a.getAttribute("aria-current") === "page") a.removeAttribute("aria-current");
-    });
+    fillList('includesList', menu.includes);
+    fillList('menuIncludes', menu.includes);
+    fillList('menuAddons', menu.addOns);
+    fillList('menuDrinks', menu.drinks);
 
-    let active = null;
-
-    if (hash) {
-      const exactHref = `${path}${hash}`;
-      active = links.find((a) => (a.getAttribute("href") || "") === exactHref) || null;
+    if (banner.enabled) {
+      const b = $('banner');
+      if (b) {
+        b.hidden = false;
+        b.classList.add('notice-visible');
+      }
+      const b1 = $('banner1');
+      const b2 = $('banner2');
+      if (b1) b1.textContent = banner.line1 || '';
+      if (b2) b2.textContent = banner.line2 || '';
     }
 
-    if (!active) {
-      active =
-        links.find((a) => {
-          const href = a.getAttribute("href") || "";
-          return href.indexOf("#") === -1 && href === path;
-        }) ||
-        links.find((a) => {
-          const href = a.getAttribute("href") || "";
-          const hrefPath = (href.split("#")[0] || "/").replace(/\/index\.html$/, "/");
-          return hrefPath === path;
-        }) ||
-        null;
+    const mapEmbed = $('mapEmbed');
+    if (mapEmbed) {
+      const q = ops.inOperation ? (today.maps || '') : (event.address || event.locationName || brand.city || 'Rochester, NY');
+      mapEmbed.setAttribute('src', `https://www.google.com/maps?q=${encodeURIComponent(q)}&output=embed`);
     }
+  };
 
-    if (active) {
-      active.classList.add("active");
-      active.setAttribute("aria-current", "page");
-    }
-  } catch (_) {}
+  const initNav = () => {
+    const toggle = $('navToggle');
+    const nav = $('primaryNav');
+    const root = document.documentElement;
 
-  // Mobile nav toggle
-  const toggle = $("navToggle");
-  const root = document.documentElement;
-  if (toggle) {
     const close = () => {
-      root.classList.remove("nav-open");
-      toggle.setAttribute("aria-expanded", "false");
+      root.classList.remove('nav-open');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
     };
 
-    toggle.addEventListener("click", () => {
-      const open = root.classList.toggle("nav-open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const isOpen = root.classList.toggle('nav-open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      $$('a', nav).forEach((a) => a.addEventListener('click', close));
+
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!target || !root.classList.contains('nav-open')) return;
+        if (toggle.contains(target) || nav.contains(target)) return;
+        close();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') close();
+      });
+    }
+
+    const path = (window.location.pathname || '/').replace(/\/index\.html$/, '/');
+    $$('[data-nav-link]').forEach((a) => {
+      const href = a.getAttribute('href') || '';
+      const hrefPath = (href.split('#')[0] || '/').replace(/\/index\.html$/, '/');
+      const active = hrefPath === path || (path === '/' && href === '/');
+      a.classList.toggle('active', active);
+      if (active) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
     });
+  };
 
-    document.addEventListener("click", (e) => {
-      const t = e.target;
-      if (!t) return;
-      if (t === toggle || toggle.contains(t)) return;
-      const nav = document.getElementById(toggle.getAttribute("aria-controls") || "");
-      if (nav && (t === nav || nav.contains(t))) return;
-      if (root.classList.contains("nav-open")) close();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") close();
-    });
-  }
-
-  // Cursor spotlight
-  const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!prefersReduce) {
-    const onMove = (e) => {
-      const x = Math.round(e.clientX);
-      const y = Math.round(e.clientY);
-      document.documentElement.style.setProperty("--mx", `${x}px`);
-      document.documentElement.style.setProperty("--my", `${y}px`);
-    };
-    window.addEventListener("mousemove", onMove, { passive: true });
-    window.addEventListener("touchmove", (e) => {
-      const t = e.touches && e.touches[0];
-      if (!t) return;
-      document.documentElement.style.setProperty("--mx", `${Math.round(t.clientX)}px`);
-      document.documentElement.style.setProperty("--my", `${Math.round(t.clientY)}px`);
-    }, { passive: true });
-  }
-
-  // Scroll reveal
-  const revealEls = Array.from(document.querySelectorAll(".reveal"));
-  if (revealEls.length) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((ent) => {
-          if (ent.isIntersecting) {
-            ent.target.classList.add("in");
-            io.unobserve(ent.target);
-          }
+  const initMotion = () => {
+    if (!prefersReducedMotion) {
+      let raf = 0;
+      window.addEventListener('pointermove', (event) => {
+        if (raf) return;
+        raf = window.requestAnimationFrame(() => {
+          document.documentElement.style.setProperty('--mx', `${Math.round(event.clientX)}px`);
+          document.documentElement.style.setProperty('--my', `${Math.round(event.clientY)}px`);
+          raf = 0;
         });
-      },
-      { threshold: 0.14, rootMargin: "0px 0px -10% 0px" }
-    );
-    revealEls.forEach((el) => io.observe(el));
-  }
+      }, { passive: true });
+    }
 
-  // Back to top button
-  const mkToTop = () => {
-    const btn = document.createElement("button");
-    btn.className = "toTop";
-    btn.type = "button";
-    btn.setAttribute("aria-label", "Back to top");
-    btn.innerHTML = `
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M12 5l7 7-1.4 1.4L13 8.8V20h-2V8.8L6.4 13.4 5 12l7-7z" fill="currentColor"/>
-      </svg>
-    `;
+    const revealEls = $$('.reveal, [data-reveal]');
+    if (!revealEls.length) return;
 
-    btn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: prefersReduce ? "auto" : "smooth" });
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      revealEls.forEach((el) => el.classList.add('in'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        el.classList.add('in');
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -12% 0px' });
+
+    revealEls.forEach((el, index) => {
+      if (!el.style.getPropertyValue('--delay')) el.style.setProperty('--delay', `${Math.min(index % 6, 5) * 70}ms`);
+      observer.observe(el);
     });
+  };
 
-    document.body.appendChild(btn);
+  const initScrollPolish = () => {
+    const topbar = document.querySelector('.topbar');
+    const progress = document.createElement('div');
+    progress.className = 'scroll-progress';
+    progress.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(progress);
+
+    const toTop = document.createElement('button');
+    toTop.className = 'toTop';
+    toTop.type = 'button';
+    toTop.setAttribute('aria-label', 'Back to top');
+    toTop.innerHTML = '<span aria-hidden="true">↑</span>';
+    document.body.appendChild(toTop);
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' }));
+
+    const floating = document.querySelector('.floating-menu-cta');
+    const hero = document.querySelector('.hero-cinematic, .page-masthead');
+    const parallaxEls = $$('[data-parallax]');
+
+    let ticking = false;
+    const update = () => {
+      const y = window.scrollY || 0;
+      if (topbar) topbar.classList.toggle('is-scrolled', y > 18);
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      progress.style.transform = `scaleX(${Math.min(1, y / max)})`;
+      toTop.classList.toggle('show', y > 700);
+
+      if (floating && hero) {
+        const rect = hero.getBoundingClientRect();
+        floating.classList.toggle('show', rect.bottom < 120);
+      }
+
+      if (!prefersReducedMotion) {
+        parallaxEls.forEach((el) => {
+          const speed = Number(el.getAttribute('data-parallax') || 0.06);
+          const rect = el.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+          const offset = (rect.top - window.innerHeight * 0.45) * speed;
+          el.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+        });
+      }
+      ticking = false;
+    };
 
     const onScroll = () => {
-      const show = window.scrollY > 700;
-      btn.classList.toggle("show", show);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-  };
-
-  mkToTop();
-
-
-  // Scroll polish: progress line + header state
-  const topbar = document.querySelector(".topbar");
-  const progress = document.createElement("div");
-  progress.className = "scroll-progress";
-  document.body.appendChild(progress);
-
-  const onScrollPolish = () => {
-    const scrolled = window.scrollY > 20;
-    if (topbar) topbar.classList.toggle("is-scrolled", scrolled);
-
-    const doc = document.documentElement;
-    const max = Math.max(1, doc.scrollHeight - window.innerHeight);
-    const pct = Math.min(1, Math.max(0, window.scrollY / max));
-    progress.style.transform = `scaleX(${pct})`;
-  };
-
-  window.addEventListener("scroll", onScrollPolish, { passive: true });
-  window.addEventListener("resize", onScrollPolish, { passive: true });
-  onScrollPolish();
-
-  const floatingMenuCta = document.querySelector(".floating-menu-cta");
-  const heroPrime = document.querySelector(".hero-cinematic, .hero-prime, .hero");
-  const onFloatingCta = () => {
-    if (!floatingMenuCta || !heroPrime) return;
-    const rect = heroPrime.getBoundingClientRect();
-    const show = rect.bottom < 120;
-    floatingMenuCta.classList.toggle("show", show);
-  };
-  window.addEventListener("scroll", onFloatingCta, { passive: true });
-  window.addEventListener("resize", onFloatingCta, { passive: true });
-  onFloatingCta();
-
-  // Mailto form (Contact page)
-  const form = $("mailtoForm");
-  if (form && contact.email) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const fd = new FormData(form);
-      const name = String(fd.get("name") || "").trim();
-      const reason = String(fd.get("reason") || "").trim();
-      const date = String(fd.get("date") || "").trim();
-      const headcount = String(fd.get("headcount") || "").trim();
-      const details = String(fd.get("details") || "").trim();
-      const phone = String(fd.get("phone") || "").trim();
-
-      const subject = `Travana Tacos Inquiry — ${reason || "Question"}`;
-
-      const lines = [
-        "Hi Travana Tacos,",
-        "",
-        name ? `My name is ${name}.` : "My name is …",
-        reason ? `I’m reaching out about: ${reason}` : "I’m reaching out about: …",
-        date ? `Date/time: ${date}` : "Date/time: …",
-        headcount ? `Expected headcount: ${headcount}` : "Expected headcount: …",
-        phone ? `Phone: ${phone}` : "Phone: …",
-        "",
-        "Details:",
-        details || "…",
-        "",
-        "Thanks!",
-        name || ""
-      ];
-
-      const body = lines.join("\n");
-
-      const href = `mailto:${encodeURIComponent(contact.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = href;
-    });
-  }
-
-  // Copy buttons (if present)
-  document.querySelectorAll("[data-copy]").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      try {
-        const targetId = btn.getAttribute("data-copy") || "";
-        const el = document.getElementById(targetId);
-        const text = el ? (el.textContent || el.value || "") : "";
-        if (!text) return;
-        await navigator.clipboard.writeText(text);
-        const prev = btn.textContent;
-        btn.textContent = "Copied!";
-        setTimeout(() => (btn.textContent = prev), 900);
-      } catch (_) {
-        // no-op
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
       }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  };
+
+  const initCopyButtons = () => {
+    $$('[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const targetId = btn.getAttribute('data-copy');
+        const target = targetId ? $(targetId) : null;
+        const text = target ? (target.value || target.textContent || '') : '';
+        if (!text.trim() || !navigator.clipboard) return;
+        const original = btn.textContent;
+        try {
+          await navigator.clipboard.writeText(text.trim());
+          btn.textContent = 'Copied';
+          btn.classList.add('is-copied');
+          window.setTimeout(() => {
+            btn.textContent = original;
+            btn.classList.remove('is-copied');
+          }, 1200);
+        } catch (_) {}
+      });
     });
-  });
+  };
+
+  const initMailtoForm = () => {
+    const form = $('mailtoForm');
+    if (!form || !contact.email) return;
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const fd = new FormData(form);
+      const name = String(fd.get('name') || '').trim();
+      const reason = String(fd.get('reason') || '').trim();
+      const date = String(fd.get('date') || '').trim();
+      const headcount = String(fd.get('headcount') || '').trim();
+      const phone = String(fd.get('phone') || '').trim();
+      const details = String(fd.get('details') || '').trim();
+
+      const subject = `Travana Tacos Inquiry — ${reason || 'Question'}`;
+      const body = [
+        'Hi Travana Tacos,',
+        '',
+        name ? `My name is ${name}.` : 'My name is …',
+        reason ? `I’m reaching out about: ${reason}` : 'I’m reaching out about: …',
+        date ? `Date/time: ${date}` : 'Date/time: …',
+        headcount ? `Expected headcount: ${headcount}` : 'Expected headcount: …',
+        phone ? `Phone: ${phone}` : 'Phone: …',
+        '',
+        'Details:',
+        details || '…',
+        '',
+        'Thanks!',
+        name || ''
+      ].join('\n');
+
+      window.location.href = `mailto:${encodeURIComponent(contact.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  };
+
+  hydrateConfig();
+  initNav();
+  initMotion();
+  initScrollPolish();
+  initCopyButtons();
+  initMailtoForm();
 })();

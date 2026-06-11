@@ -1,4 +1,5 @@
 // site-config.js
+// Edit this file for live operations, contact info, and menu copy.
 window.SITE = {
   brand: {
     name: "Travana Tacos",
@@ -65,9 +66,9 @@ window.SITE = {
   },
 
   images: {
-    hero1: "/images/taco-closeup.jpg",
-    hero2: "/images/taco-portrait.jpg",
-    about1: "/images/taco-story.jpg",
-    about2: "/images/taco-detail.jpg"
+    hero1: "/images/taco-closeup.webp",
+    hero2: "/images/taco-portrait.webp",
+    about1: "/images/taco-story.webp",
+    about2: "/images/taco-detail.webp"
   }
 };

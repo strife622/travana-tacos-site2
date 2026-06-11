@@ -1,16 +1,18 @@
 # Travana Tacos website
 
-Static website (Cloudflare Pages friendly): plain HTML + CSS + a tiny bit of vanilla JS.
+Static website (Cloudflare Pages friendly): plain HTML + CSS + a small vanilla JS enhancement layer.
 
-## Quick edits done
+## Tech stack
 
-- **Site-wide content**: `site-config.js` (brand name, banner, first event, menu text, contact links, hero images)
-- **Look & feel**: `styles.css`
-- **Behavior / animations**: `app.js` (nav toggle, scroll reveal, map embed, mailto form)
+- Plain HTML pages: `index.html`, `menu.html`, `find-us.html`, `faq.html`, `about.html`, `contact.html`
+- Shared styling: `styles.css`
+- Shared behavior + config hydration: `app.js`
+- Shared editable business/content config: `site-config.js`
+- Static assets: `/images`
 
-## Going live
+## Editing live service info
 
-When you’re actively serving:
+When Travana is actively serving:
 
 1. Open `site-config.js`
 2. Set:
@@ -29,4 +31,10 @@ today: {
 }
 ```
 
-That will automatically update the Home + Find Us pages.
+That automatically updates the Home and Find Us pages.
+
+## Redesign notes
+
+The current design direction is “molten obsidian taqueria”: simple structure, dark glass surfaces, warm birria/mango highlights, neon cilantro/lime accents, scroll reveals, hover glows, shimmer CTAs, and optimized WebP food imagery.
+
+The site respects `prefers-reduced-motion`, keeps animations CSS/vanilla-JS only, and includes SEO basics, Open Graph tags, sitemap coverage, and restaurant structured data.

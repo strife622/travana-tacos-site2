@@ -4,119 +4,121 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>About • Travana Tacos</title>
-    <meta name="description" content="The Travana Tacos story — family roots, real flavor, and one taco done right." />
-    <meta name="theme-color" content="#190f0d" />
+    <meta name="description" content="The Travana Tacos story: Rochester pride, Mexican flavor roots, and one taco done right." />
+    <meta name="theme-color" content="#080407" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta property="og:title" content="About • Travana Tacos" />
+    <meta property="og:description" content="The Travana Tacos story: Rochester pride, Mexican flavor roots, and one taco done right." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.travanatacos.com/about.html" />
+    <meta property="og:image" content="https://www.travanatacos.com/images/BrandedTacos.png" />
+    <meta property="og:site_name" content="Travana Tacos" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://www.travanatacos.com/about.html" />
     <link rel="icon" href="/images/TravanaLogo.png" type="image/png" />
     <link rel="apple-touch-icon" href="/images/TravanaLogo.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="/images/taco-closeup.webp" type="image/webp" />
     <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Travana Tacos",
+  "url": "https://www.travanatacos.com/",
+  "image": "https://www.travanatacos.com/images/BrandedTacos.png",
+  "description": "Travana Tacos is a Rochester, NY quesabirria pop-up built around one signature taco box served fast and done right.",
+  "servesCuisine": ["Mexican", "Quesabirria tacos"],
+  "priceRange": "$",
+  "paymentAccepted": "Credit Card",
+  "areaServed": "Rochester, NY",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Rochester",
+    "addressRegion": "NY",
+    "addressCountry": "US"
+  },
+  "sameAs": ["https://instagram.com/TravanaTacos"],
+  "email": "travis.woods@travanatacos.com",
+  "hasMenu": "https://www.travanatacos.com/menu.html",
+  "location": {
+    "@type": "Place",
+    "name": "Highland Park",
+    "address": "1440 South Ave, Rochester, NY 14620"
+  },
+  "additionalProperty": [
+    {"@type": "PropertyValue", "name": "Current status", "value": "Not currently in operation"},
+    {"@type": "PropertyValue", "name": "First event", "value": "Rochester Lilac Festival, May 8–17, 2026, serving every Friday, Saturday and Sunday all day"},
+    {"@type": "PropertyValue", "name": "Signature menu item", "value": "Quesabirria Tacos (Box of 3) with consomé"}
+  ]
+}</script>
   </head>
   <body class="page-about">
     <a class="skip" href="#main">Skip to content</a>
     <header class="topbar">
       <div class="wrap topbar-inner">
-        <a class="brand" href="/">
+        <a class="brand" href="/" aria-label="Travana Tacos home">
           <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" role="img" focusable="false"><path d="M12 38c6-15 18-23 36-23 2 0 4 0 6 .2-2 18-10 31-24 39-8-4-14-9-18-16Z" fill="currentColor" opacity=".22"/><path d="M10 36c5-14 17-22 36-22 3 0 5 .1 8 .4-2.7 18.6-11.6 31.7-27 39.6C18 49.7 12.4 43.8 10 36Z" fill="currentColor"/><path d="M20 36c2.6 0 3.6 1.6 3.6 3.3S22.6 43 20 43s-3.7-1.7-3.7-3.7S17.4 36 20 36Zm10-4c2.6 0 3.6 1.6 3.6 3.3S32.6 39 30 39s-3.7-1.7-3.7-3.7S27.4 32 30 32Zm11 3c2.5 0 3.5 1.5 3.5 3.1S43.5 41 41 41s-3.6-1.5-3.6-2.9S38.5 35 41 35Z" fill="#FFD88E"/></svg></span>
           <span class="brand-text">
-            <span class="brand-name" id="brandName">Travana Tacos</span>
-            <span class="brand-sub" id="brandSub">Rochester, NY</span>
+            <span class="brand-name" data-site-text="brand.name">Travana Tacos</span>
+            <span class="brand-sub" data-site-text="brand.city">Rochester, NY</span>
           </span>
         </a>
         <div class="nav-wrap">
           <div class="nav-highlights" aria-label="Store highlights">
-            <span class="nav-label">Store</span>
-            <a class="nav-pill nav-pill-hot" href="/menu.html#best-sellers">Best Seller</a>
+            <span class="nav-label">Drop</span>
+            <a class="nav-pill nav-pill-hot" href="/menu.html#best-sellers">Signature box</a>
           </div>
           <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="primaryNav" aria-expanded="false"><span></span></button>
           <nav class="nav nav-catalog" id="primaryNav" aria-label="Primary navigation">
-            <a href="/">Home</a>
-            <a href="/menu.html" class="nav-shop">Shop</a>
-            <a href="/menu.html#collections">Collections</a>
-            <a href="/faq.html">FAQ</a>
-            <a href="/about.html" aria-current="page">About</a>
-            <a href="/contact.html" class="nav-cta">Contact</a>
+            <a href="/" data-nav-link >Home</a>
+<a href="/menu.html" data-nav-link >Menu</a>
+<a href="/find-us.html" data-nav-link >Find Us</a>
+<a href="/faq.html" data-nav-link >FAQ</a>
+<a href="/about.html" data-nav-link aria-current="page">About</a>
+<a href="/contact.html" class="nav-cta" data-nav-link >Contact</a>
           </nav>
         </div>
       </div>
     </header>
 
-
     <main id="main" class="site-main inner-main">
-      <section id="banner" class="notice reveal" style="display:none;"><strong id="banner1">Travana Tacos is not currently in operation.</strong><span id="banner2">First event: Rochester Lilac Festival (May 8–17, 2026). Serving Fri–Sun all day.</span></section>
-
-      <section class="card hero-prime page-masthead reveal">
-        <div class="section-top">
-          <div>
-            <div class="kicker"><span class="k-dot"></span>About Travana</div>
-            <h1 class="title-gap">A love story, three boys, and one taco worth building a brand around.</h1>
-            <p class="lead">Travana Tacos started with Travis and Ana Woods, a house full of boys who always say yes to tacos, and a refusal to keep settling for flavor that felt watered down or just plain wrong.</p>
-            <div class="badge-cloud"><span class="badge-chip">Family built</span><span class="badge-chip">Mexican flavor roots</span><span class="badge-chip">Rochester launch</span></div>
-          </div>
-          <aside class="mini-quote">Mastery is knowing what to leave out. That line became the brand because it became the kitchen rule first.</aside>
-        </div>
+      <section id="banner" class="notice reveal" hidden>
+        <strong id="banner1">Travana Tacos is not currently in operation.</strong>
+        <span id="banner2">First event: Rochester Lilac Festival (May 8–17, 2026). Serving Fri–Sun all day.</span>
       </section>
-
-      <section class="card reveal">
-        <div class="kicker"><span class="k-dot"></span>What we believe</div>
-        <h2 class="title-gap-sm">Minimalism is not the backup plan. It is the whole power move.</h2>
-        <div class="value-grid">
-          <div class="value-card"><div class="iconbadge" aria-hidden="true">🎯</div><h3>Focus</h3><p>One taco, done right, beats a scattered menu every time.</p></div>
-          <div class="value-card"><div class="iconbadge" aria-hidden="true">🔥</div><h3>Flavor</h3><p>The goal is a punch-you-in-the-face first bite: crispy, cheesy, juicy, and rich enough to remember.</p></div>
-          <div class="value-card"><div class="iconbadge" aria-hidden="true">⚡</div><h3>Speed</h3><p>Built for festivals, busy hands, and quick decisions without making the food feel rushed.</p></div>
-          <div class="value-card"><div class="iconbadge" aria-hidden="true">💳</div><h3>Honesty</h3><p>Card only. Tight menu. Clear promise. No fluff, no fake complexity, no drama.</p></div>
-        </div>
+      <section class="card hero-prime page-masthead reveal">
+        <div><div class="kicker"><span class="k-dot"></span>About</div><h1 class="title-gap">A love story, three boys, and one taco worth building a brand around.</h1><p class="lead title-gap">Travana Tacos is a Rochester pop-up with Mexican flavor roots and a very focused promise: one taco done right.</p></div>
       </section>
 
       <section class="grid2">
-        <section class="card reveal">
-          <div class="kicker"><span class="k-dot"></span>Our story</div>
-          <h2 class="title-gap-sm">How Travana got here</h2>
-          <div class="timeline">
-            <div class="titem"><div class="when">2018</div><div class="what">Travis and Ana meet in Northern Virginia — Travis in Ashburn, Ana in Manassas with her family, and tacos already very much part of the language.</div></div>
-            <div class="titem"><div class="when">Back in Rochester</div><div class="what">Life fills up with marriage, three boys, and a lot of local meals that left Ana craving the real thing.</div></div>
-            <div class="titem"><div class="when">The running joke</div><div class="what">Ana’s mom becomes the unofficial flavor judge with two legendary reviews: “¡Es diferente!” and “¡muchas azúcares!”</div></div>
-            <div class="titem"><div class="when">The turning point</div><div class="what">After enough compromise, the answer becomes obvious: stop hunting, start cooking, and bring the flavor yourselves.</div></div>
-            <div class="titem"><div class="when">May 2026</div><div class="what">Travana says hello at the Rochester Lilac Festival with one hero item and a very clear point of view.</div></div>
-          </div>
-          <div class="divider"></div>
-          <details><summary>Why only one taco?</summary><p class="muted">Because the whole idea is to master the one thing that best represents the brand instead of diluting it with extras.</p></details>
-          <details class="title-gap-sm"><summary>What should the first bite feel like?</summary><p class="muted">Crispy outside, juicy inside, deep savory dip, and that instant “ohhh yea baby” moment.</p></details>
-        </section>
-
-        <section class="card card-dark reveal">
-          <div class="kicker"><span class="k-dot"></span>Family flavor board</div>
-          <h2 class="title-gap-sm">Travana is a love letter to the taco that kept missing from the local scene.</h2>
-          <p class="muted copy-gap">Everything about the brand is built to feel warm, bold, a little rebellious, and rooted in real family appetite — not generic “food truck” energy.</p>
-          <div class="gallery stack-gap">
-            <img src="/images/taco-story.jpg" alt="Travana Tacos hero shot with crispy quesabirria lined up and ready to dip" loading="lazy" />
-            <img src="/images/taco-detail.jpg" alt="Close-up detail of the seared tortilla and branded taco shell" loading="lazy" />
-            <img src="/images/taco-closeup.jpg" alt="Close-up of quesabirria filling and molten cheese" loading="lazy" />
-            <img src="/images/taco-portrait.jpg" alt="Portrait photo of Travana Tacos quesabirria box arranged for a premium brand feel" loading="lazy" />
-          </div>
-          <div class="editorial-quote stack-gap">
-            <h3 class="copy-gap-md">The whole point is for one taco to carry a whole story.</h3>
-            <p class="muted copy-gap">That story is Northern Virginia sparks, Mexican flavor roots, Rochester family life, and zero interest in watered-down shortcuts.</p>
-          </div>
-        </section>
+        <section class="card reveal"><div class="kicker"><span class="k-dot"></span>Point of view</div><h2 class="title-gap-sm">Minimalism is not the backup plan. It is the whole power move.</h2><p class="muted copy-gap">A tiny menu can feel braver than a big one. Travana is designed around the idea that people remember the best thing you make, not the longest menu you print.</p><p class="muted copy-gap">That means fewer items, cleaner service, and more attention on the quesabirria box that has to carry the brand.</p></section>
+        <section class="card reveal"><div class="gallery-grid"><figure><img id="aboutImg1" src="/images/taco-story.webp" alt="Travana taco story photo" loading="lazy" /></figure><figure><img id="aboutImg2" src="/images/taco-detail.webp" alt="Close detail of Travana taco and consomé" loading="lazy" /></figure><figure><img src="/images/quesabirria_04.webp" alt="Quesabirria taco texture" loading="lazy" /></figure><figure><img src="/images/quesabirria_08.webp" alt="Travana tacos plated for service" loading="lazy" /></figure></div></section>
       </section>
 
-      <section class="social-proof-strip reveal">
-        <div class="wrap social-proof-inner">
-          <div class="social-proof-copy">
-            <div class="kicker"><span class="k-dot"></span>Welcome to the family</div>
-            <h2 class="title-gap-sm">The brand is simple because the mission is simple.</h2>
-            <p class="muted copy-gap-md copy-measure-md">Serve one unforgettable taco, keep it fast, keep it fair, and make Rochester feel the difference immediately.</p>
-          </div>
-          <div class="social-proof-photo"><img src="/images/festival-strip.jpg" alt="Wide Travana Tacos festival-style food image showing multiple branded tacos ready to serve" loading="lazy" /></div>
-        </div>
+      <section class="grid2">
+        <section class="card reveal"><div class="kicker"><span class="k-dot"></span>How Travana got here</div><h2 class="title-gap-sm">Built from family, flavor, and restraint.</h2><p class="muted copy-gap">Travana is personal: Rochester pride, Mexican flavor roots, and a family-built brand trying to make one thing feel special instead of making everything feel average.</p><p class="muted copy-gap">The design follows the food philosophy too — simple structure, strong details, and a little bit of drama where it matters.</p></section>
+        <section class="card card-dark reveal"><div class="kicker"><span class="k-dot"></span>Why quesabirria</div><h2 class="title-gap-sm">Travana is a love letter to the taco that kept missing from the local scene.</h2><p class="muted copy-gap">The crispy shell, the cheese pull, the broth dip, the lime, the cilantro, the speed of the order — it all works when the execution is focused.</p><div class="contact-trust stack-gap-lg"><div class="trust-card"><h3>Focused menu</h3><p>One signature item gives the brand a clean memory hook.</p></div><div class="trust-card"><h3>Event ready</h3><p>Less complexity means faster service and better consistency.</p></div><div class="trust-card"><h3>Premium feel</h3><p>The brand should look as craveable as the food.</p></div></div></section>
       </section>
 
+      <section class="social-proof-strip reveal"><div class="big-line">The brand is simple because the mission is simple.</div><div class="mini-quote">Make the taco people text their friends about. Then make the line move.</div></section>
+      <a class="floating-menu-cta" href="/menu.html">View Menu</a>
       <footer class="footer footer-rich">
-        <div class="footer-inner"><div class="footer-center"><img src="/images/TravanaLogo.png" alt="Travana Tacos" class="footer-logo" /><div class="footer-title">© <span id="y"></span> <span id="brandName2">Travana Tacos</span></div><div class="mini">Rochester pride. Mexican flavor roots. One taco done right.</div><div class="footer-socials"><a href="https://instagram.com/TravanaTacos" target="_blank" rel="noopener">Instagram</a><a href="mailto:travis.woods@travanatacos.com">Email</a><a href="/find-us.html">Find Us</a></div><div class="footer-news">Welcome to the family. See you at the truck.</div></div></div>
+        <div class="footer-inner">
+          <div class="footer-center">
+            <img src="/images/TravanaLogo.png" alt="Travana Tacos" class="footer-logo" loading="lazy" />
+            <div class="footer-title">© <span data-site-text="year"></span> <span data-site-text="brand.name">Travana Tacos</span></div>
+            <div class="mini">Rochester pride. Mexican flavor roots. One taco done right.</div>
+            <div class="footer-socials">
+              <a href="https://instagram.com/TravanaTacos" data-site-href="contact.instagram" target="_blank" rel="noopener">Instagram</a>
+              <a href="mailto:travis.woods@travanatacos.com" data-site-href="contact.email">Email</a>
+              <a href="/find-us.html">Find Us</a>
+            </div>
+            <div class="footer-news">For now, Instagram is the drop board. That’s where live locations, event reminders, and first-look photos will land.</div>
+          </div>
+        </div>
       </footer>
     </main>
     <script src="/site-config.js" defer></script>
